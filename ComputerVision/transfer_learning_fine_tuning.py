@@ -84,7 +84,7 @@ model.summary()
 
 len(model.trainable_variables)
 
-epochs = 2
+epochs = 10
 steps_per_epoch = train_generator.n // batch_size
 validation_steps = validation_generator.n // batch_size
 
@@ -179,7 +179,7 @@ plt.show()
 import tempfile
 
 MODEL_DIR = "/home/jugs/PycharmProjects/DelvifyFWD/output"   # tempfile.gettempdir()
-version = 1
+version = 2
 export_path = os.path.join(MODEL_DIR, str(version))
 print('export_path = {} \n'.format(export_path))
 
@@ -215,6 +215,7 @@ plt.imshow(image)
 plt.axis('off')
 plt.show()
 
+
 x = tf.keras.preprocessing.image.img_to_array(image)
 x.shape
 
@@ -233,7 +234,7 @@ json_response = requests.post('http://localhost:8510/v1/models/image_detect:pred
 
 predictions = json.loads(json_response.text)['prediction']
 
-model.predict()
+model.predict(x=x)
 
 
 
